@@ -15,6 +15,6 @@ module Recommendable
   end
 
   def self.enqueue(user_id)
-    Resque.enqueue RecommendationRefresher, user_id
+    RecommendationRefresher.perform_async(user_id)
   end
 end

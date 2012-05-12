@@ -17,14 +17,14 @@ After bundling, run the installation generator:
 $ rails g recommendable:install
 ```
 
-Double check `config/initializers/recommendable.rb` for options on configuring your Redis connection. After a user likes or dislikes something new, they are placed in a Resque queue to have their recommendation updated. Start up resque like so:
+Double check `config/initializers/recommendable.rb` for options on configuring your Redis connection. After a user likes or dislikes something new, they are placed in a Sidekiq queue to have their recommendation updated. Start up sidekiq like so:
 
 ``` bash
-$ QUEUE=recommendable rake environment resque:work
+$ bundle exec sidekiq
 ```
 
 You can run this command multiple times if you wish to start more than one
-worker. For more options on this task, head over to [defunkt/resque][resque].
+worker. For more information on sidekiq, head over to [mperham][sidekiq].
 
 Usage
 -----
@@ -56,18 +56,6 @@ For Mac OS X users, homebrew is by far the easiest way to install Redis.
 $ brew install redis
 ```
 
-### Via Resque
-
-Resque (which is also a dependency of recommendable) includes Rake tasks that
-will install and run Redis for you:
-
-``` bash
-$ git clone git://github.com/defunkt/resque.git
-$ cd resque
-$ rake redis:install dtach:install
-$ rake redis:start
-```
-
 Redis will now be running on localhost:6379. After a second, you can hit `ctrl-\` to detach and keep Redis running in the background.
 
 Contributing to recommendable
@@ -97,7 +85,7 @@ Copyright © 2012 David Celis. See LICENSE.txt for
 further details.
 
 [stars]: http://davidcelis.com/blog/2012/02/01/why-i-hate-five-star-ratings/
-[resque]: https://github.com/defunkt/resque
+[sidekiq]: https://github.com/mperham/sidekiq
 [forking]: http://help.github.com/forking/
 [pull requests]: http://help.github.com/pull-requests/
 [collaborative filtering]: http://davidcelis.com/blog/2012/02/07/collaborative-filtering-with-likes-and-dislikes/

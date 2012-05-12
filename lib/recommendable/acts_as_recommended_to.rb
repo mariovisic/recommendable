@@ -633,7 +633,7 @@ module Recommendable
       end
 
       # Used internally to update self's prediction values across all
-      # recommendable types. This is called in the Resque job to refresh
+      # recommendable types. This is called in the sidekiq job to refresh
       # recommendations.
       #
       # @private
@@ -681,7 +681,7 @@ module Recommendable
       end
       
       # Used internally to update the similarity values between self and all
-      # other users. This is called in the Resque job to refresh recommendations.
+      # other users. This is called in the sidekiq job to refresh recommendations.
       #
       # @private
       def update_similarities

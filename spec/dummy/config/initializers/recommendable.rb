@@ -1,6 +1,5 @@
 require "redis"
-require "resque"
-require "resque-loner"
+require "sidekiq"
 
 # What class will be liking/disliking objects and receiving recommendations?
 Recommendable.user_class = "User"
