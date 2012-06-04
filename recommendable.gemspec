@@ -24,6 +24,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency "jeweler", "~> 1.6.4"
   s.add_development_dependency "rcov"
 
-  s.add_dependency "sidekiq", "~> 1.2"
+  s.add_dependency "sidekiq", "~> 2.0"
 end
 
